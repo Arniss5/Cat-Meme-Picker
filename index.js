@@ -11,6 +11,9 @@ emotionRadios.addEventListener('change', highlightCheckedOption)
 
 memeModalCloseBtn.addEventListener('click', closeModal)
 
+
+
+
 getImageBtn.addEventListener('click', renderCat)
 
 function highlightCheckedOption(e){
@@ -23,6 +26,8 @@ function highlightCheckedOption(e){
 
 function closeModal(){
     memeModal.style.display = 'none'
+    window.removeEventListener('click', closeOnClickOutside
+        )
 }
 
 function renderCat(){
@@ -35,6 +40,18 @@ function renderCat(){
         >
         `
     memeModal.style.display = 'flex'
+    setTimeout(function() {
+        window.addEventListener('click', closeOnClickOutside
+        )}, 1000); 
+    
+}
+
+function closeOnClickOutside(e) {
+    
+        const isClickInsideModal = memeModal.contains(e.target)
+        if (!isClickInsideModal) {
+            closeModal()
+        }
 }
 
 function getSingleCatObject(){
